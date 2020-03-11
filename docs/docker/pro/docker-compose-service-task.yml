@@ -1,0 +1,32 @@
+version: '2'
+services:
+  sdk-logs-task:
+    image: registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-task:v1.0.0
+    restart: always
+    ports:
+      - "6263:6263"
+    environment:
+      - spring.profiles.active=pro
+    volumes:
+      - /data/docker/logs/sdk-logs-task/info/:/logs/info/sdk-logs-task/
+      - /data/docker/logs/sdk-logs-task/error/:/logs/error/sdk-logs-task/
+      - /data/nginx/html/:/data/nginx/html/
+    networks:
+      - sdk
+  sdk-logs-task-file:
+    image: registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-task-file:v1.0.0
+    restart: always
+    ports:
+      - "6264:6264"
+    environment:
+      - spring.profiles.active=pro
+    volumes:
+      - /data/docker/logs/sdk-logs-task-file/info/:/logs/info/sdk-logs-task-file/
+      - /data/docker/logs/sdk-logs-task-file/error/:/logs/error/sdk-logs-task-file/
+      - /data/nginx/html/:/data/nginx/html/
+    networks:
+      - sdk
+
+networks:
+  sdk:
+    driver: bridge

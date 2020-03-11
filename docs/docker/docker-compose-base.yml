@@ -1,0 +1,29 @@
+version: '2'
+services:
+  sdk-mysql:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --init-connect='SET NAMES utf8mb4;' --innodb-flush-log-at-trx-commit=0
+    restart: always
+    ports:
+      - 3309:3306
+    volumes:
+      - /data/docker/mysql/lib:/var/lib/mysql
+      - /data/docker/mysql/conf/my.conf:/etc/mysql/my.conf
+    environment:
+      MYSQL_ROOT_PASSWORD: sdk@2020
+    networks:
+      - sdk
+
+  sdk-redis:
+    image: redis:4.0.13
+    restart: always
+    ports:
+      - 6380:6379
+    volumes:
+      - /data/docker/data/redis:/data
+    networks:
+      - sdk
+
+networks:
+  sdk:
+    driver: bridge

@@ -1,0 +1,17 @@
+version: '2'
+services:
+  sdk-nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "6262:6002"
+    volumes:
+      - /home/nginx/170.conf:/etc/nginx/nginx.conf
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - sdk
+
+networks:
+  sdk:
+    driver: bridge

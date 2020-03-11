@@ -1,0 +1,18 @@
+version: '2'
+services:
+  sdk-logs-web:
+    image: harbor.ecouponsx.com/sdk/sdk-logs-web:v1.0.0
+    restart: always
+    ports:
+      - "6262:6262"
+    environment:
+      - spring.profiles.active=dev
+    volumes:
+      - /data/docker/logs/sdk-logs-web/:/opt/app/logs/sdk-logs-web/
+      - /home/nginx/html/:/home/nginx/html/
+    networks:
+      - sdk
+
+networks:
+  sdk:
+    driver: bridge

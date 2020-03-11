@@ -1,0 +1,45 @@
+version: '2'
+services:
+  sdk-logs-web:
+    image:  registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-web:v1.0.0
+    restart: always
+    ports:
+      - "6001:6001"
+    environment:
+      - spring.profiles.active=pro
+    volumes:
+      - /data/docker/logs/sdk-logs-web/info/:/logs/info/sdk-logs/
+      - /data/docker/logs/sdk-logs-web/error/:/logs/error/sdk-logs/
+      - /data/nginx/html/:/data/nginx/html/
+    networks:
+      - sdk
+  sdk-logs-web-v2:
+    image:  registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-web:v1.0.0
+    restart: always
+    ports:
+      - "6002:6001"
+    environment:
+      - spring.profiles.active=pro
+    volumes:
+      - /data/docker/logs/sdk-logs-web-v2/info/:/logs/info/sdk-logs/
+      - /data/docker/logs/sdk-logs-web-v2/error/:/logs/error/sdk-logs/
+      - /data/nginx/html/:/data/nginx/html/
+    networks:
+      - sdk
+  sdk-logs-web-v3:
+    image:  registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-web:v1.0.0
+    restart: always
+    ports:
+      - "6003:6001"
+    environment:
+      - spring.profiles.active=pro
+    volumes:
+      - /data/docker/logs/sdk-logs-web-v3/info/:/logs/info/sdk-logs/
+      - /data/docker/logs/sdk-logs-web-v3/error/:/logs/error/sdk-logs/
+      - /data/nginx/html/:/data/nginx/html/
+    networks:
+      - sdk
+
+networks:
+  sdk:
+    driver: bridge
