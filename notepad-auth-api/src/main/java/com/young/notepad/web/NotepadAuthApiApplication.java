@@ -19,14 +19,18 @@ public class NotepadAuthApiApplication {
     @Autowired
     Controller controller;
 
+
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(NotepadAuthApiApplication.class, args);
     }
 
     @GetMapping("/get")
-    public String get(){
+    public String get() throws InterruptedException {
+        System.err.println("run is");
         return controller.getValue();
     }
+
+
 
 }
 

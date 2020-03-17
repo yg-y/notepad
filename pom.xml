@@ -19,6 +19,7 @@
     <modules>
         <module>notepad-generator</module>
         <module>notepad-auth-api</module>
+        <module>notepad-getaway</module>
     </modules>
 
     <properties>

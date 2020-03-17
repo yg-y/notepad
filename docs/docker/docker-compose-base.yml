@@ -10,20 +10,24 @@ services:
       - /data/docker/mysql/lib:/var/lib/mysql
       - /data/docker/mysql/conf/my.conf:/etc/mysql/my.conf
     environment:
-      MYSQL_ROOT_PASSWORD: sdk@2020
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=blogyg@2020
     networks:
-      - sdk
+      - blogyg
 
   sdk-redis:
     image: redis:4.0.13
     restart: always
+    command: redis-server --requirepass blogyg@2020
     ports:
       - 6380:6379
     volumes:
       - /data/docker/data/redis:/data
+    environment:
+      - TZ=Asia/Shanghai
     networks:
-      - sdk
+      - blogyg
 
 networks:
-  sdk:
+  blogyg:
     driver: bridge
