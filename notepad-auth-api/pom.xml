@@ -30,6 +30,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>HdrHistogram</artifactId>
+                    <groupId>org.hdrhistogram</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -89,26 +95,47 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <!-- docker的maven插件，官网：https://github.com/spotify/docker-maven-plugin -->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.12</version>
-                <configuration>
-                    <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
-                    <!-- 详见：https://github.com/spotify/docker-maven-plugin    Invalid repository name ... only [a-z0-9-_.] are allowed-->
-                    <imageName>registry.us-west-1.aliyuncs.com/mobikok/opx/${project.artifactId}:v1.0.0</imageName>
-                    <baseImage>java</baseImage>
-                    <!--<entryPoint>["java", "-javaagent:/home/workspace/skywalking/skywalking-agent.jar", "-Dskywalking_config=/home/workspace/skywalking/agent.config" , "-Dskywalking.agent.service_name=${SW_SERVICE_NAME}","-Dskywalking.collector.backend_service=${SW_BACKEND_SERVICE}", "-jar", "/${project.build.finalName}.jar"]</entryPoint>-->
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--            <groupId>com.spotify</groupId>-->
+<!--            <artifactId>docker-maven-plugin</artifactId>-->
+<!--            <version>1.4.13</version>-->
+<!--            <configuration>-->
+<!--                &lt;!&ndash; 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 &ndash;&gt;-->
+<!--                &lt;!&ndash; 详见：https://github.com/spotify/docker-maven-plugin    Invalid repository name ... only [a-z0-9-_.] are allowed&ndash;&gt;-->
+<!--                <imageName>registry.cn-hangzhou.aliyuncs.com/blogyg/notepad/${project.artifactId}:v1.0.0</imageName>-->
+<!--                <baseImage>java</baseImage>-->
+<!--                &lt;!&ndash;<entryPoint>["java", "-javaagent:/home/workspace/skywalking/skywalking-agent.jar", "-Dskywalking_config=/home/workspace/skywalking/agent.config" , "-Dskywalking.agent.service_name=${SW_SERVICE_NAME}","-Dskywalking.collector.backend_service=${SW_BACKEND_SERVICE}", "-jar", "/${project.build.finalName}.jar"]</entryPoint>&ndash;&gt;-->
+<!--                <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>-->
+<!--                <resources>-->
+<!--                    <resource>-->
+<!--                        <targetPath>/</targetPath>-->
+<!--                        <directory>${project.build.directory}</directory>-->
+<!--                        <include>${project.build.finalName}.jar</include>-->
+<!--                    </resource>-->
+<!--                </resources>-->
+<!--            </configuration>-->
+<!--        </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--                <version>${dockerfile-maven-version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>default</id>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                            <goal>push</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <repository>${project.baseUri}/doc/docker</repository>-->
+<!--                    <tag>${project.version}</tag>-->
+<!--                    <buildArgs>-->
+<!--                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>-->
+<!--                    </buildArgs>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

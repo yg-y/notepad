@@ -5,3 +5,5 @@
 - feign
 - sentinel
 - skyworking
+
+mvn clean install package -Dmaven.test.skip=true && mvn package docker:build -Dmaven.test.skip=true  

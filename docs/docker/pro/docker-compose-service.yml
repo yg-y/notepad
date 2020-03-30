@@ -1,45 +1,18 @@
-version: '2'
+version: '3.3'
 services:
   sdk-logs-web:
-    image:  registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-web:v1.0.0
+    image:  registry.cn-hangzhou.aliyuncs.com/blogyg/notepad/notepad-getaway:v1.0.0
     restart: always
     ports:
-      - "6001:6001"
+      - "8000:8000"
     environment:
-      - spring.profiles.active=pro
+      - SW_APPLICATION_CODE:notepad-getaway-docker
+      - SW_COLLECTOR_SERVERS:192.168.31.129:12800
     volumes:
-      - /data/docker/logs/sdk-logs-web/info/:/logs/info/sdk-logs/
-      - /data/docker/logs/sdk-logs-web/error/:/logs/error/sdk-logs/
-      - /data/nginx/html/:/data/nginx/html/
+      - /Users/young/lib:/agent
     networks:
-      - sdk
-  sdk-logs-web-v2:
-    image:  registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-web:v1.0.0
-    restart: always
-    ports:
-      - "6002:6001"
-    environment:
-      - spring.profiles.active=pro
-    volumes:
-      - /data/docker/logs/sdk-logs-web-v2/info/:/logs/info/sdk-logs/
-      - /data/docker/logs/sdk-logs-web-v2/error/:/logs/error/sdk-logs/
-      - /data/nginx/html/:/data/nginx/html/
-    networks:
-      - sdk
-  sdk-logs-web-v3:
-    image:  registry.us-west-1.aliyuncs.com/mobikok/opx/sdk-logs-web:v1.0.0
-    restart: always
-    ports:
-      - "6003:6001"
-    environment:
-      - spring.profiles.active=pro
-    volumes:
-      - /data/docker/logs/sdk-logs-web-v3/info/:/logs/info/sdk-logs/
-      - /data/docker/logs/sdk-logs-web-v3/error/:/logs/error/sdk-logs/
-      - /data/nginx/html/:/data/nginx/html/
-    networks:
-      - sdk
+      - skywalking
 
 networks:
-  sdk:
+  skywalking:
     driver: bridge
