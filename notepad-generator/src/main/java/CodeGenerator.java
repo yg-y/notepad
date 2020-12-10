@@ -56,17 +56,17 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://111.229.63.210:3306/sdk_logs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/local_test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setPassword("mobikok@2020");
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.sdk.logs");
+        pc.setParent("com.young.notepad");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -89,7 +89,7 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/sdk-logs-generator/src/main/resources/mapper/" + pc.getModuleName()
+                return projectPath + "/notepad-generator/src/main/resources/mapper/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });

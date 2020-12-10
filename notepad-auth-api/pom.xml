@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>notepad-demo</artifactId>
+        <artifactId>notepad</artifactId>
         <groupId>com.young.notepad</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -48,18 +48,10 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.skywalking/apm-toolkit-trace -->
-        <dependency>
-            <groupId>org.apache.skywalking</groupId>
-            <artifactId>apm-toolkit-trace</artifactId>
-            <version>6.6.0</version>
-            <scope>provided</scope>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>${alibaba-druid}</version>
         </dependency>
 
         <!--mysql-->
@@ -67,7 +59,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector-java}</version>
         </dependency>
 
         <dependency>

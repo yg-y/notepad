@@ -1,0 +1,23 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: notepad-serve-admin
+  cloud:
+    nacos:
+      discovery:
+        server-addr: www.blogyg.cn:8848
+        namespace: 4bad1ab6-34fb-4524-b445-02aea302e90e
+      config:
+        server-addr: www.blogyg.cn:8848
+        file-extension: yml
+        namespace: 4bad1ab6-34fb-4524-b445-02aea302e90e
+        group: notepad
+        refreshable-dataids: notepad-serve-admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
