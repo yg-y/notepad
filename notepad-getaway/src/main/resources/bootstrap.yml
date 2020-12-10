@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 9000
 
 spring:
   application:
@@ -8,10 +8,10 @@ spring:
     nacos:
       discovery:
         server-addr: www.blogyg.cn:8848
-        namespace: 274f657d-1f85-4fce-b33c-006439d97d9c
+        namespace: 4bad1ab6-34fb-4524-b445-02aea302e90e
       config:
         server-addr: www.blogyg.cn:8848
-        file-extension: yaml
-        namespace: 274f657d-1f85-4fce-b33c-006439d97d9c
+        file-extension: yml
+        namespace: 4bad1ab6-34fb-4524-b445-02aea302e90e
         group: notepad
         refreshable-dataids: notepad-getaway
