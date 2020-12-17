@@ -2,11 +2,14 @@ package com.young.notepad.web.controller;
 
 
 import com.young.notepad.web.service.IOfferService;
+import com.young.notepad.web.service.impl.OfferServiceImpl;
 import com.young.notepad.web.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -27,5 +30,4 @@ public class OfferController {
     public R get() {
         return R.SUCCESS(iOfferService.list());
     }
-
 }
