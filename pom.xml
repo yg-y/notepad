@@ -19,6 +19,7 @@
     <modules>
         <module>notepad-generator</module>
         <module>notepad-auth-api</module>
+        <module>notepad-server-feign</module>
         <module>notepad-getaway</module>
         <module>notepad-serve-admin</module>
         <module>notepad-serve-common</module>

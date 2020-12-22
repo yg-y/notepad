@@ -1,0 +1,6 @@
+#配置alpha-server地址
+alpha:
+  cluster:
+    address: 127.0.0.1:8090
+  omega:
+    enabled: true
