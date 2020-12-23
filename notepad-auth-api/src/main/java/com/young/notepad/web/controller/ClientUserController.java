@@ -27,7 +27,7 @@ public class ClientUserController {
 //    @Compensable(compensationMethod = "cancel")
     @Transactional
     @GetMapping("/get")
-    public String get() {
+    public String get() throws InterruptedException {
         ClientUser clientUser = new ClientUser();
         clientUser.setName("young");
         clientUser.setEmail("young.yg@foxmail.com");
@@ -35,8 +35,11 @@ public class ClientUserController {
 //        int i = 1 / 0;
 //
 //        System.err.println(i);
+        iClientUserService.save(clientUser);
 
-        return iClientUserService.save(clientUser) ? "success" : "error";
+        Thread.sleep(1000);
+        System.err.println("run is");
+        return  "success";
     }
 
     @Transactional

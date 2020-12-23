@@ -1,5 +1,7 @@
 package com.young.notepad.web.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.young.notepad.web.entity.Offer;
 import com.young.notepad.web.feign.service.AdminService;
 import com.young.notepad.web.service.IOfferService;
@@ -36,11 +38,11 @@ public class OfferController {
     @Transactional
     @GetMapping("/get")
     public R get() {
-        List<Offer> list = iOfferService.list();
+        List<Offer> list = iOfferService.list(new QueryWrapper<Offer>().lambda().orderByDesc(Offer::getCampaignId));
         Offer offer = list.get(0);
         offer.setName("test offer name...");
-
-        iOfferService.updateById(offer);
+        offer.setCampaignId(offer.getCampaignId() + 1);
+        iOfferService.save(offer);
 
         try {
             adminService.get();
