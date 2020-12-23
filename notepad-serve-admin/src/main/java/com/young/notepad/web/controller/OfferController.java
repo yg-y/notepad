@@ -4,7 +4,7 @@ import com.young.notepad.web.entity.Offer;
 import com.young.notepad.web.feign.service.AdminService;
 import com.young.notepad.web.service.IOfferService;
 import com.young.notepad.web.util.R;
-import org.apache.servicecomb.pack.omega.context.annotations.SagaStart;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +21,7 @@ import java.util.List;
  * @author young
  * @since 2020-12-10
  */
+@Slf4j
 @RestController
 @RequestMapping("/web/offer")
 public class OfferController {
@@ -31,17 +32,21 @@ public class OfferController {
     @Autowired
     AdminService adminService;
 
-    @SagaStart(timeout = 20)
+    //    @SagaStart(timeout = 20)
     @Transactional
     @GetMapping("/get")
     public R get() {
         List<Offer> list = iOfferService.list();
         Offer offer = list.get(0);
-        offer.setAppCaps("test app caps...");
+        offer.setName("test offer name...");
 
         iOfferService.updateById(offer);
 
-        adminService.get();
+        try {
+            adminService.get();
+        } catch (Exception e) {
+            log.error("feign http request error :{}", e.getMessage());
+        }
 
         return R.SUCCESS();
     }

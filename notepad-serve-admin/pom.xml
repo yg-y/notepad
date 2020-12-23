@@ -57,17 +57,17 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.servicecomb.pack</groupId>
-            <artifactId>omega-spring-starter</artifactId>
-            <version>0.4.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.servicecomb.pack</groupId>-->
+<!--            <artifactId>omega-spring-starter</artifactId>-->
+<!--            <version>0.4.0</version>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.apache.servicecomb.pack</groupId>
-            <artifactId>omega-transport-resttemplate</artifactId>
-            <version>0.4.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.servicecomb.pack</groupId>-->
+<!--            <artifactId>omega-transport-resttemplate</artifactId>-->
+<!--            <version>0.4.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.young.notepad</groupId>
             <artifactId>notepad-server-feign</artifactId>

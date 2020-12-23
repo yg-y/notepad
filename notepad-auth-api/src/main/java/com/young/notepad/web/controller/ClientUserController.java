@@ -3,7 +3,6 @@ package com.young.notepad.web.controller;
 
 import com.young.notepad.web.entity.ClientUser;
 import com.young.notepad.web.service.IClientUserService;
-import org.apache.servicecomb.pack.omega.transaction.annotations.Compensable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,7 @@ public class ClientUserController {
     @Autowired
     IClientUserService iClientUserService;
 
-    @Compensable(compensationMethod = "cancel")
+//    @Compensable(compensationMethod = "cancel")
     @Transactional
     @GetMapping("/get")
     public String get() {
@@ -33,9 +32,9 @@ public class ClientUserController {
         clientUser.setName("young");
         clientUser.setEmail("young.yg@foxmail.com");
 
-        int i = 1 / 0;
-
-        System.err.println(i);
+//        int i = 1 / 0;
+//
+//        System.err.println(i);
 
         return iClientUserService.save(clientUser) ? "success" : "error";
     }
