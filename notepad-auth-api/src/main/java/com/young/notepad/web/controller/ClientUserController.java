@@ -24,7 +24,7 @@ public class ClientUserController {
     @Autowired
     IClientUserService iClientUserService;
 
-//    @Compensable(compensationMethod = "cancel")
+    //    @Compensable(compensationMethod = "cancel")
     @Transactional
     @GetMapping("/get")
     public String get() throws InterruptedException {
@@ -35,11 +35,17 @@ public class ClientUserController {
 //        int i = 1 / 0;
 //
 //        System.err.println(i);
+        for (int i = 0; i < 10; i++) {
+            Thread.sleep(1000);
+            System.err.println(
+                    "run is : " + i
+            );
+        }
+
         iClientUserService.save(clientUser);
 
-        Thread.sleep(1000);
         System.err.println("run is");
-        return  "success";
+        return "success";
     }
 
     @Transactional

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AdminServiceFallback implements AdminService {
     @Override
-    public String get() {
-        return "http get method error, into fallback";
+    public String get() throws Exception {
+        throw new Exception("feign http request error, method get()");
     }
 }

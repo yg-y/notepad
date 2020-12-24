@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface AdminService {
 
     @RequestMapping(value = "/web/client-user/get",method = RequestMethod.GET)
-    String get();
+    String get() throws Exception;
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>
@@ -37,18 +38,17 @@ public class OfferController {
     //    @SagaStart(timeout = 20)
     @Transactional
     @GetMapping("/get")
-    public R get() {
-        List<Offer> list = iOfferService.list(new QueryWrapper<Offer>().lambda().orderByDesc(Offer::getCampaignId));
-        Offer offer = list.get(0);
-        offer.setName("test offer name...");
-        offer.setCampaignId(offer.getCampaignId() + 1);
-        iOfferService.save(offer);
+    public R get() throws Exception {
 
-        try {
-            adminService.get();
-        } catch (Exception e) {
-            log.error("feign http request error :{}", e.getMessage());
-        }
+        Offer offer = new Offer();
+        Random random = new Random();
+        int i = random.nextInt(100);
+        offer.setCampaignId(i);
+        offer.setName("test offer name...");
+        offer.setCampaignId(+1);
+
+        iOfferService.save(offer.setCountryIds("s"));
+        adminService.get();
 
         return R.SUCCESS();
     }
