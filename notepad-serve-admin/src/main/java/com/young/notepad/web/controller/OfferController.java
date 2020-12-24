@@ -1,7 +1,5 @@
 package com.young.notepad.web.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.young.notepad.web.entity.Offer;
 import com.young.notepad.web.feign.service.AdminService;
 import com.young.notepad.web.service.IOfferService;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Random;
 
 /**
